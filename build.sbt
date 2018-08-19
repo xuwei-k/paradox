@@ -76,11 +76,10 @@ lazy val tests = project
 lazy val plugin = project
   .in(file("plugin"))
   .dependsOn(core)
-  .enablePlugins(BintrayPublish)
+  .enablePlugins(BintrayPublish, SbtPlugin)
   .disablePlugins(Sonatype)
   .settings(
     name := "sbt-paradox",
-    sbtPlugin := true,
     addSbtPlugin(Library.sbtWeb),
     scriptedLaunchOpts += ("-Dproject.version=" + version.value),
     scriptedLaunchOpts ++= ManagementFactory.getRuntimeMXBean.getInputArguments.asScala.filter(
@@ -102,11 +101,10 @@ lazy val plugin = project
   )
 
 lazy val themePlugin = (project in file("theme-plugin"))
-  .enablePlugins(BintrayPublish)
+  .enablePlugins(BintrayPublish, SbtPlugin)
   .disablePlugins(Sonatype)
   .settings(
     name := "sbt-paradox-theme",
-    sbtPlugin := true,
     addSbtPlugin(Library.sbtWeb)
   )
 
